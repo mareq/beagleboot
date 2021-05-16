@@ -1,0 +1,18 @@
+# common configuration
+BB_ARCH=arm
+BB_CROSS_COMPILE_BAREMETAL=arm-none-eabi-
+BB_CROSS_COMPILE_LINUX=arm-linux-gnueabi-
+
+# u-boot configuration
+BB_UDEFCONFIG=am335x_evm_defconfig
+
+# kernel configuration
+BB_KDEFCONFIG=bb.org_defconfig
+
+# busybox configuration
+BB_BDEFCONFIG=defconfig
+
+
+# vim: ts=2 sw=2 et:
+
+

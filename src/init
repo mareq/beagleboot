@@ -1,0 +1,46 @@
+#!/usr/bin/env sh
+
+# write log about the script being started
+echo "[        INIT] Init script started: ${0} ${@}"
+
+## mount proc, sys and boot filesystems (dev filesystem is mounted automatically by kernel)
+#echo "[        INIT] Mounting proc filesystem"
+#mount -t proc proc /proc
+#echo "[        INIT] Mounting sysfs filesystem"
+#mount -t sysfs sysfs /sys
+#echo "[        INIT] Mounting boot filesystem"
+#mount /dev/mmcblk0p1 /boot
+
+# mount filesystems
+echo "[        INIT] Mounting filesystems"
+/bin/mount -a
+
+# set hostname
+echo "[        INIT] Setting hostname: $(cat /etc/hostname)"
+/bin/hostname -F /etc/hostname
+
+# wait for everything to complete
+echo "[        INIT] Waiting for 2 seconds for startup to finish"
+sleep 2
+
+# motd
+echo
+echo "System up and running..."
+echo "  boot:   $(cat /boot/boot.id)"
+echo "  rootfs: $(cat /rfs.id)"
+echo
+echo "Current time: $(date -Iseconds)"
+echo
+echo
+
+## just run shell (simplest possible thing to do)
+#/bin/sh
+
+# start login shell
+/bin/cttyhack /bin/login root
+/sbin/reboot
+
+
+# vim: set ts=2 sw=2 et:
+
+

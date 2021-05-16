@@ -1,0 +1,21 @@
+# console
+console=ttyS0,115200n8
+
+# boot configuration
+bootdev=mmc 0:1
+bootdelay=4
+imgfile=uImage
+#kernelargs=console=ttyO0,115200n8 root=/dev/mmcblk0p2 ro rootfstype=ext4 rootwait debug earlyprintk mem=512M init=/sbin/bb-init
+kernelargs=console=ttyO0,115200n8 root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait debug earlyprintk mem=512M init=/sbin/bb-init
+fdtfile=am335x-boneblack-wireless.dtb
+
+# boot commands
+cmd_loadimg=load \${bootdev} \${loadaddr} \${imgfile}
+cmd_loadfdt=load \${bootdev} \${fdtaddr} \${fdtfile}
+cmd_boot=echo Booting from microSD ...; setenv autoload no; run cmd_loadimg; run cmd_loadfdt; setenv bootargs \${kernelargs}; bootm \${loadaddr} - \${fdtaddr}
+uenvcmd=run cmd_boot
+
+
+# vim: set ts=2 sw=2 et:
+
+

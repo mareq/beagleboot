@@ -1,0 +1,12 @@
+[submodule "sub/u-boot"]
+	path = sub/u-boot
+	url = https://github.com/mareq/u-boot.git
+	branch = v2021.04
+[submodule "sub/beagleboard-linux"]
+	path = sub/beagleboard-linux
+	url = https://github.com/mareq/beagleboard-linux.git
+	branch = 4.14
+[submodule "sub/busybox"]
+	path = sub/busybox
+	url = https://github.com/mareq/busybox.git
+	branch = 1_33_1
